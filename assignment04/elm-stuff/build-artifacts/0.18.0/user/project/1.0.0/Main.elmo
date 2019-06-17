@@ -1,0 +1,524 @@
+var _user$project$Main$viewList = function (inputList1) {
+	return A2(
+		_elm_lang$html$Html$ul,
+		{ctor: '[]'},
+		A2(
+			_elm_lang$core$List$map,
+			function (l) {
+				return A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'* ',
+										A2(_elm_lang$core$Basics_ops['++'], l, ' *'))),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$br,
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					});
+			},
+			inputList1));
+};
+var _user$project$Main$flippedComparison = F2(
+	function (a, b) {
+		var _p0 = A2(_elm_lang$core$Basics$compare, a, b);
+		switch (_p0.ctor) {
+			case 'LT':
+				return _elm_lang$core$Basics$GT;
+			case 'EQ':
+				return _elm_lang$core$Basics$EQ;
+			default:
+				return _elm_lang$core$Basics$LT;
+		}
+	});
+var _user$project$Main$fetchTheMaxElement = function (inputList) {
+	var myList = A2(
+		_elm_lang$core$List$map,
+		_elm_lang$core$String$trim,
+		A2(_elm_lang$core$String$split, ',', inputList));
+	return _elm_lang$core$Basics$toString(
+		A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$head(
+				A2(
+					_elm_lang$core$List$sortWith,
+					_user$project$Main$flippedComparison,
+					A2(
+						_elm_lang$core$List$map,
+						function (l) {
+							return A2(
+								_elm_lang$core$Result$withDefault,
+								0,
+								_elm_lang$core$String$toInt(l));
+						},
+						myList)))));
+};
+var _user$project$Main$printFibonacciList = F4(
+	function (fib1, fib2, fibCount, fibonacciList) {
+		printFibonacciList:
+		while (true) {
+			if (_elm_lang$core$Native_Utils.eq(fibCount, 100)) {
+				return fibonacciList;
+			} else {
+				if (_elm_lang$core$Native_Utils.eq(fibCount, 0)) {
+					var _v1 = fib1,
+						_v2 = fib2,
+						_v3 = fibCount + 1,
+						_v4 = A2(
+						_elm_lang$core$List$append,
+						fibonacciList,
+						_elm_lang$core$List$singleton(
+							_elm_lang$core$Basics$toString(fib1)));
+					fib1 = _v1;
+					fib2 = _v2;
+					fibCount = _v3;
+					fibonacciList = _v4;
+					continue printFibonacciList;
+				} else {
+					if (_elm_lang$core$Native_Utils.eq(fibCount, 1)) {
+						var _v5 = fib1,
+							_v6 = fib2,
+							_v7 = fibCount + 1,
+							_v8 = A2(
+							_elm_lang$core$List$append,
+							fibonacciList,
+							_elm_lang$core$List$singleton(
+								_elm_lang$core$Basics$toString(fib2)));
+						fib1 = _v5;
+						fib2 = _v6;
+						fibCount = _v7;
+						fibonacciList = _v8;
+						continue printFibonacciList;
+					} else {
+						var _v9 = fib2,
+							_v10 = fib1 + fib2,
+							_v11 = fibCount + 1,
+							_v12 = A2(
+							_elm_lang$core$List$append,
+							fibonacciList,
+							_elm_lang$core$List$singleton(
+								_elm_lang$core$Basics$toString(fib1 + fib2)));
+						fib1 = _v9;
+						fib2 = _v10;
+						fibCount = _v11;
+						fibonacciList = _v12;
+						continue printFibonacciList;
+					}
+				}
+			}
+		}
+	});
+var _user$project$Main$mergeList = F3(
+	function (inputList1, inputList2, resultList) {
+		mergeList:
+		while (true) {
+			if ((_elm_lang$core$Native_Utils.cmp(
+				_elm_lang$core$List$length(inputList1),
+				0) > 0) && (_elm_lang$core$Native_Utils.cmp(
+				_elm_lang$core$List$length(inputList2),
+				0) > 0)) {
+				var _v13 = A2(
+					_elm_lang$core$Maybe$withDefault,
+					{ctor: '[]'},
+					_elm_lang$core$List$tail(inputList1)),
+					_v14 = A2(
+					_elm_lang$core$Maybe$withDefault,
+					{ctor: '[]'},
+					_elm_lang$core$List$tail(inputList2)),
+					_v15 = A2(
+					_elm_lang$core$List$append,
+					A2(
+						_elm_lang$core$List$append,
+						resultList,
+						A2(
+							_elm_lang$core$String$split,
+							',',
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								'',
+								_elm_lang$core$List$head(inputList1)))),
+					A2(
+						_elm_lang$core$String$split,
+						',',
+						A2(
+							_elm_lang$core$Maybe$withDefault,
+							'',
+							_elm_lang$core$List$head(inputList2))));
+				inputList1 = _v13;
+				inputList2 = _v14;
+				resultList = _v15;
+				continue mergeList;
+			} else {
+				if (_elm_lang$core$Native_Utils.cmp(
+					_elm_lang$core$List$length(inputList1),
+					0) > 0) {
+					var _v16 = A2(
+						_elm_lang$core$Maybe$withDefault,
+						{ctor: '[]'},
+						_elm_lang$core$List$tail(inputList1)),
+						_v17 = {ctor: '[]'},
+						_v18 = A2(
+						_elm_lang$core$List$append,
+						resultList,
+						A2(
+							_elm_lang$core$String$split,
+							',',
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								'',
+								_elm_lang$core$List$head(inputList1))));
+					inputList1 = _v16;
+					inputList2 = _v17;
+					resultList = _v18;
+					continue mergeList;
+				} else {
+					if (_elm_lang$core$Native_Utils.cmp(
+						_elm_lang$core$List$length(inputList2),
+						0) > 0) {
+						var _v19 = A2(
+							_elm_lang$core$Maybe$withDefault,
+							{ctor: '[]'},
+							_elm_lang$core$List$tail(inputList2)),
+							_v20 = {ctor: '[]'},
+							_v21 = A2(
+							_elm_lang$core$List$append,
+							resultList,
+							A2(
+								_elm_lang$core$String$split,
+								',',
+								A2(
+									_elm_lang$core$Maybe$withDefault,
+									'',
+									_elm_lang$core$List$head(inputList2))));
+						inputList1 = _v19;
+						inputList2 = _v20;
+						resultList = _v21;
+						continue mergeList;
+					} else {
+						return resultList;
+					}
+				}
+			}
+		}
+	});
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'UpdateList1':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{inputList1: _p1._0});
+			case 'PrintList':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{inputList1: _p1._0});
+			case 'UpdateList2':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{inputList2: _p1._0});
+			case 'FindMaxElement':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						maxElement: _user$project$Main$fetchTheMaxElement(_p1._0)
+					});
+			case 'Print100FibonacciNumber':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						fibonacciList: A4(_user$project$Main$printFibonacciList, _p1._0, _p1._1, _p1._2, _p1._3)
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						resultList: A3(
+							_user$project$Main$mergeList,
+							A2(
+								_elm_lang$core$List$map,
+								_elm_lang$core$String$trim,
+								A2(_elm_lang$core$String$split, ',', _p1._0)),
+							A2(
+								_elm_lang$core$List$map,
+								_elm_lang$core$String$trim,
+								A2(_elm_lang$core$String$split, ',', _p1._1)),
+							_p1._2)
+					});
+		}
+	});
+var _user$project$Main$init = {
+	inputList1: '',
+	inputList2: '',
+	maxElement: '',
+	finalList: '',
+	resultList: {ctor: '[]'},
+	fibonacciList: {ctor: '[]'},
+	fib1: 0,
+	fib2: 1,
+	fibCount: 0
+};
+var _user$project$Main$Model = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {inputList1: a, inputList2: b, maxElement: c, finalList: d, resultList: e, fibonacciList: f, fib1: g, fib2: h, fibCount: i};
+	});
+var _user$project$Main$Print100FibonacciNumber = F4(
+	function (a, b, c, d) {
+		return {ctor: 'Print100FibonacciNumber', _0: a, _1: b, _2: c, _3: d};
+	});
+var _user$project$Main$MergeTwoList = F3(
+	function (a, b, c) {
+		return {ctor: 'MergeTwoList', _0: a, _1: b, _2: c};
+	});
+var _user$project$Main$FindMaxElement = function (a) {
+	return {ctor: 'FindMaxElement', _0: a};
+};
+var _user$project$Main$PrintList = function (a) {
+	return {ctor: 'PrintList', _0: a};
+};
+var _user$project$Main$UpdateList2 = function (a) {
+	return {ctor: 'UpdateList2', _0: a};
+};
+var _user$project$Main$UpdateList1 = function (a) {
+	return {ctor: 'UpdateList1', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('main-container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$header,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$h1,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('ELM Assignment 4'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$table,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$tr,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$td,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Enter List 1:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$td,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$input,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('inputCls'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$placeholder('Enter comma separated String as List ..'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateList1),
+															_1: {ctor: '[]'}
+														}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$tr,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$td,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Enter List 2:'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$td,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$input,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('inputCls'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$placeholder('Enter comma separated String as List ..'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateList2),
+																_1: {ctor: '[]'}
+															}
+														}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('srchBtn'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(
+									A3(_user$project$Main$MergeTwoList, model.inputList1, model.inputList2, model.resultList)),
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Merge Element'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('srchBtn'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(
+										_user$project$Main$PrintList(model.inputList1)),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Print List 1'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('srchBtn'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(
+											A4(_user$project$Main$Print100FibonacciNumber, model.fib1, model.fib2, model.fibCount, model.fibonacciList)),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Print 100 Fibonacci numbers'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$br,
+									{ctor: '[]'},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.resultList)),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$br,
+											{ctor: '[]'},
+											{ctor: '[]'}),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('****************************'),
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$viewList(
+													A2(
+														_elm_lang$core$List$map,
+														_elm_lang$core$String$trim,
+														A2(_elm_lang$core$String$split, ',', model.inputList1))),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('****************************'),
+													_1: {
+														ctor: '::',
+														_0: _user$project$Main$viewList(model.fibonacciList),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update})();

@@ -1,0 +1,193 @@
+var _user$project$Main$isPrimeNumberFunc = F2(
+	function (number, counter) {
+		isPrimeNumberFunc:
+		while (true) {
+			if ((_elm_lang$core$Native_Utils.cmp(counter, number) < 0) && _elm_lang$core$Native_Utils.eq(
+				A2(_elm_lang$core$Basics_ops['%'], number, counter),
+				0)) {
+				return false;
+			} else {
+				if (_elm_lang$core$Native_Utils.eq(counter, number)) {
+					return true;
+				} else {
+					var _v0 = number,
+						_v1 = counter + 1;
+					number = _v0;
+					counter = _v1;
+					continue isPrimeNumberFunc;
+				}
+			}
+		}
+	});
+var _user$project$Main$isPrime = function (number) {
+	var _p0 = A2(_elm_lang$core$Debug$log, 'The candidate is ', number);
+	return A2(_user$project$Main$isPrimeNumberFunc, number, 2);
+};
+var _user$project$Main$findNthPrimeNum = F3(
+	function (inputNumber, candidate, count) {
+		findNthPrimeNum:
+		while (true) {
+			var _p1 = A2(
+				_elm_lang$core$Debug$log,
+				'The prime is ',
+				_user$project$Main$isPrime(candidate));
+			var number = A2(
+				_elm_lang$core$Result$withDefault,
+				0,
+				_elm_lang$core$String$toInt(inputNumber));
+			if ((_elm_lang$core$Native_Utils.cmp(count, number) < 0) && _user$project$Main$isPrime(candidate)) {
+				var _v2 = inputNumber,
+					_v3 = candidate + 1,
+					_v4 = count + 1;
+				inputNumber = _v2;
+				candidate = _v3;
+				count = _v4;
+				continue findNthPrimeNum;
+			} else {
+				if ((_elm_lang$core$Native_Utils.cmp(count, number) < 0) && (!_user$project$Main$isPrime(candidate))) {
+					var _v5 = inputNumber,
+						_v6 = candidate + 1,
+						_v7 = count;
+					inputNumber = _v5;
+					candidate = _v6;
+					count = _v7;
+					continue findNthPrimeNum;
+				} else {
+					return _elm_lang$core$Basics$toString(candidate - 1);
+				}
+			}
+		}
+	});
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		if (_p2.ctor === 'UpdateQuery') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{inputNumber: _p2._0});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					result: A3(_user$project$Main$findNthPrimeNum, _p2._0, _p2._1, _p2._2)
+				});
+		}
+	});
+var _user$project$Main$init = {inputNumber: '', candidate: 2, count: 0, result: ''};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {inputNumber: a, candidate: b, count: c, result: d};
+	});
+var _user$project$Main$FindTheNthPrimeNumber = F3(
+	function (a, b, c) {
+		return {ctor: 'FindTheNthPrimeNumber', _0: a, _1: b, _2: c};
+	});
+var _user$project$Main$UpdateQuery = function (a) {
+	return {ctor: 'UpdateQuery', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('main-container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$header,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$h1,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('ELM Assignment 7'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$table,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$tr,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$td,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Enter Number :'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$td,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$input,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('inputCls'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$placeholder('Enter the number N'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateQuery),
+															_1: {ctor: '[]'}
+														}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('srchBtn'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(
+									A3(_user$project$Main$FindTheNthPrimeNumber, model.inputNumber, model.candidate, model.count)),
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Search Element'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.result)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update})();

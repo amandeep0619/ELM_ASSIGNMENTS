@@ -1,0 +1,38 @@
+.main-container{
+  width: 80%;
+  margin: auto;
+  padding: 30px;
+  font-family: Helvetica, Arial, serif;
+}
+
+
+header{
+  position: relative;
+  padding: 0px 12px;
+  height: 40px;
+  background-color: rgb(96,181,205);
+}
+
+h1{
+  color:white;
+}
+
+.inputCls{
+  width: 500px;
+  margin-top: 10px;
+}
+
+.srchBtn{
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 15px;
+  color: white;
+  border: 1px solid #ccc;
+  background-color: rgb(96, 181, 204);
+  margin-left: 12px
+}
+
+.srchBtn:hover {
+  color: rgb(96, 181, 204);
+  background-color: white;
+}
